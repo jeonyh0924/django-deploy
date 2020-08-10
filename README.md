@@ -179,6 +179,12 @@ sqlite가 없다고 에러가 나는 것 이다.
 
 0810
 2 : 도커컴포즈를 통해서 디비 연결 
+3 : 업데이트를 한 후 깃 푸쉬
+4 : AWS 서버에서, git pull https://github.com/jeonyh0924/django-deploy.git를 하여 최신화를 지속한다. 
 
+
+ python3 manage.py runserver --settings=config.settings.staging 0.0.0.0:80 
+ 0.0.0.0으로 바꾸어야 외부에서 접속이 가능하다. 
+ 80번 포트를 열기 위해서는 루트를 통해서 열어야 한다. 그래서 sudo 를 앞에 붙인다. 
 
 
