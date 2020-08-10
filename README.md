@@ -189,3 +189,21 @@ sqlite가 없다고 에러가 나는 것 이다.
 
 gunicorn 은 기본적으로 static file을 서빙하지 않는다. 
 
+[whiteNoise](http://whitenoise.evans.io/en/stable/)
+
+
+sudo /usr/local/bin/gunicorn config.wsgi -b 0.0.0.0:80 --access-logfile - -e DJANGO_SETTINGS_MODULE=config.settings.staging
+
+
+
+
+
+
+
+
+
+
+
+
+
+
