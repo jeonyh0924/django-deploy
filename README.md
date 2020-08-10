@@ -139,6 +139,46 @@ sudo amazon-linux-extras install nginx1.12
 - sudo systemctl stop nginx
 
 - sudo yum git
+- git clone https://github.com/jeonyh0924/django-deploy.git
+- sudo pip3 install -r requirements.txt
+- pip3 list 
 ```
+
+
+```
+# 퍼미션 에러
+The authenticity of host 'github.com (15.164.81.167)' can't be established.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'github.com,15.164.81.167' (RSA) to the list of known hosts.
+Permission denied (publickey).
+fatal: Could not read from remote repository.
+Please make sure you have the correct access rights
+and the repository exists.
+
+해결 방법 -깃에서 ssh말고 https로 받아옴.
+
+# django.core.exceptions.ImproperlyConfigured: SQLite 3.8.3 or later is required (found 3.7.17).
+로컬 환경과 다른 에러가 발생한다. 
+sqlite가 없다고 에러가 나는 것 이다. 
+서버환경과 배포 환경은 미묘하게 항상 다르다. 
+인프라 설정을 바꿀 때 이러한 것에 집중하여 처리를 해야 하는 것 . 
+로컬에서 도커환경을 구축 한 뒤 잘 동작이 된다면
+서버 위에서도 정상적으로 동작하기 때문에
+도커가 각광받게 되었다. 
+```
+
+- 표준생성, 프리티어
+1. <인스턴스 식별자> : fc-wps-13-RDS
+2. <마스터 사용자 이름>/<암호> : root/<password>
+3. 스토리지 는 하드웨어 / 스토리지 자동 조정 활성화
+4. 퍼블릭 액세스 가능정보 열고 , 보안그룹으로 특정 값에 대해서 방어
+5. 자동 백업은 프로덕션 단계에서는 필수지만 지금은 사용하지 않겠다. 
+
+
+- 생성 된 RDS로 연결 
+
+0810
+2 : 도커컴포즈를 통해서 디비 연결 
+
 
 
