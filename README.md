@@ -133,12 +133,13 @@ code deploy- 다운타임 없이 서버들을 퍼센트, 또는 순회하며 서
 ssh -i "fc-wps-13-deploy.pem" ec2-user@ec2-15-164-80-228.ap-northeast-2.compute.amazonaws.com
 
 sudo amazon-linux-extras install nginx1.12
-
+sudo yum install python3
+sudo yum install telnet
 - sudo systemctl start nginx
 - sudo systemctl status nginx
 - sudo systemctl stop nginx
 
-- sudo yum git
+- sudo yum install git
 - git clone https://github.com/jeonyh0924/django-deploy.git
 - sudo pip3 install -r requirements.txt
 - pip3 list 
@@ -183,7 +184,7 @@ sqlite가 없다고 에러가 나는 것 이다.
 4 : AWS 서버에서, git pull https://github.com/jeonyh0924/django-deploy.git를 하여 최신화를 지속한다. 
 
 
- python3 manage.py runserver --settings=config.settings.staging 0.0.0.0:80 
+ python3 manage.py runserver --settings=config.settings.staging 0.0.0.0:80
  0.0.0.0으로 바꾸어야 외부에서 접속이 가능하다. 
  80번 포트를 열기 위해서는 루트를 통해서 열어야 한다. 그래서 sudo 를 앞에 붙인다. 
 
@@ -191,19 +192,38 @@ gunicorn 은 기본적으로 static file을 서빙하지 않는다.
 
 [whiteNoise](http://whitenoise.evans.io/en/stable/)
 
-
+#### 런서버의 성능이 좋지 않아서 퍼포먼스적인 이유로 gunicorn을 쓴다. 
 sudo /usr/local/bin/gunicorn config.wsgi -b 0.0.0.0:80 --access-logfile - -e DJANGO_SETTINGS_MODULE=config.settings.staging
 
 
 
 
+1. git 레포 생성
+2. local runserver
+3. git push
+4. git pull to ec2
+5. local docker compose
+
+
+```shell
+# 프로세스 중에 80번 포트에 해당하는 값들을 찾아본다. 
+- ps -efc | grep -i 0.0.0.0:80
+# 해당 포트 삭제
+- sudo kill -9 4519
+```
 
 
 
 
+08 11 
 
+- ec2 생성 / 서브넷 A 
+- elastic IP 생성 - 연결
+- git repo 생성, 로컬 실행.
+- local db postgres 연결, 실행
+	- environ 실행
+	- 
 
-
-
-
-
+- sudo yum install python3
+- sudo yum install git
+- 
